@@ -1,5 +1,6 @@
 var MiniPh = require('./index.js');
-var miniPh = new MiniPh('/dev/i2c-0', 0x4d);
+// var miniPh = new MiniPh('/dev/i2c-0', 0x4d);
+var miniPh = new MiniPh();
 
 function read() {
 	miniPh.readPh(function (err, m) {

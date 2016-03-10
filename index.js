@@ -1,11 +1,11 @@
-var i2c = require('i2c');
+var i2c = require('i2c-bus');
 
 /* To Do
  * temperature adjustment - calibration, and read of pH
  * Event emitter?
  * Stream interface?
  */
- 
+
  // Based on code - https://github.com/SparkysWidgets/MinipHBFW
 
 /*
@@ -47,12 +47,14 @@ Actual values 5 jan 14
 
  */
 
-var MiniPh = function (device, address) {
-	this.device = device;
-	this.address = address;
-	this.wire = new i2c(address, {
-			device : device
-		});
+var MiniPh = function () {
+	// this.device = device;
+	// this.address = address;
+  //
+  // this.wire = i2c.open(1);
+	// this.wire = new i2c(address, {
+	// 		device : device
+	// 	});
 	this.calcpHSlope();
 }
 
@@ -110,7 +112,13 @@ MiniPh.prototype.resetFilter = function () {
 
 MiniPh.prototype.readPh = function (callback) {
 	m = this;
-	this.wire.readBytes(0x00, 2, function (err, res) {
+  var i2c1 = i2c.open(1, function (err) {
+
+  var buffer = new Buffer(2);
+  if (err) throw err;
+  // this.wire.readI2cBlock(0x4d,0x00,2,res,function(err,bytesRead,res))
+	i2c1.readI2cBlock(0x4d,0x00, 2,buffer, function (err, bytesRead,buffer) {
+    var res = buffer.toJSON().data;
 		m.raw = res[0] * 256 + res[1];
 		if (m.filter === undefined) {
 			m.filter = m.raw
@@ -125,6 +133,7 @@ MiniPh.prototype.readPh = function (callback) {
 		m.ph = m.calcpH(m.filter);
 		callback(err, m);
 	});
+  }
 }
 
 module.exports = MiniPh;
