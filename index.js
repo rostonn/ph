@@ -133,7 +133,7 @@ MiniPh.prototype.readPh = function (callback) {
 		m.ph = m.calcpH(m.filter);
 		callback(err, m);
 	});
-  }
+  });
 }
 
 module.exports = MiniPh;
