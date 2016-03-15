@@ -1,25 +1,26 @@
 {
-	"name" : "mini-ph",
-	"version" : "1.0.2",
-	"description" : "Mini Ph Module, i2c pH measurement with Raspberry Pi",
-	"main" : "index.js",
-	"scripts" : {
-		"test" : "test.js"
-	},
-	"repository" : {
-		"type" : "git",
-		"url" : "git://github.com/wilberforce/mini-ph.git"
-	},
-	"dependencies" : {
-	},
-	"keywords" : [
-		"miniPh",
-		"nodejs",
-		"raspberry pi",
-		"i2c",
-		"MCP3221 i2c ADC",
-		"pH measurement"
-	],
-	"author" : "Rhys Williams",
-	"license" : "BSD"
+  "name": "mini-ph",
+  "version": "1.0.2",
+  "description": "Mini Ph Module, i2c pH measurement with Raspberry Pi",
+  "main": "index.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wilberforce/mini-ph.git"
+  },
+  "dependencies": {
+    "lcd": "^1.1.2"
+  },
+  "keywords": [
+    "miniPh",
+    "nodejs",
+    "raspberry pi",
+    "i2c",
+    "MCP3221 i2c ADC",
+    "pH measurement"
+  ],
+  "author": "Rhys Williams",
+  "license": "BSD"
 }
