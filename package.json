@@ -11,7 +11,8 @@
     "url": "git://github.com/wilberforce/mini-ph.git"
   },
   "dependencies": {
-    "i2c-bus": "^1.0.2"
+    "i2c-bus": "^1.0.2",
+    "lcd": "^1.1.2"
   },
   "keywords": [
     "miniPh",

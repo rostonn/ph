@@ -11,6 +11,18 @@ var Lcd = require('lcd'),
     rows: 2
   });
 
+	//Display pH Values on LCD Screen
+lcd.on('ready', function() {
+  setInterval(function() {
+    lcd.setCursor(0, 0);
+    lcd.print("pH:"+miniPh.ph);
+    lcd.once('printed', function() {
+    	lcd.setCursor(0,1);
+    	lcd.print("raw:"+raw);
+    });
+  }, 1000);
+});
+
 function read() {
 	miniPh.readPh(function (err, m) {
 		if (err) {
@@ -24,19 +36,7 @@ function display() {
 		raw : miniPh.raw,
 		filter : miniPh.filter,
 		pH : miniPh.ph
-
 	});
-	//Display pH Values on LCD Screen
-	lcd.on('ready', function() {
-  // setInterval(function() {
-    lcd.setCursor(0, 0);
-    lcd.print("pH:"+miniPh.ph);
-    lcd.once('printed', function() {
-    	lcd.setCursor(0,1);
-    	lcd.print("raw:"+raw);
-    });
-  // }, 1000);
-});
 }
 
 //show loaded config
