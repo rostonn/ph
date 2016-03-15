@@ -2,6 +2,15 @@ var MiniPh = require('./index.js');
 // var miniPh = new MiniPh('/dev/i2c-0', 0x4d);
 var miniPh = new MiniPh();
 
+var Lcd = require('lcd'),
+  lcd = new Lcd({
+    rs: 7,
+    e: 8,
+    data: [25, 24, 23, 18],
+    cols: 16,
+    rows: 2
+  });
+
 function read() {
 	miniPh.readPh(function (err, m) {
 		if (err) {
@@ -17,6 +26,17 @@ function display() {
 		pH : miniPh.ph
 
 	});
+	//Display pH Values on LCD Screen
+	lcd.on('ready', function() {
+  // setInterval(function() {
+    lcd.setCursor(0, 0);
+    lcd.print("pH:"+miniPh.ph);
+    lcd.once('printed', function() {
+    	lcd.setCursor(0,1);
+    	lcd.print("raw:"+raw);
+    });
+  // }, 1000);
+});
 }
 
 //show loaded config
@@ -64,4 +84,11 @@ stdin.on('data', function (key) {
 		console.log('current Config..');
 		console.log(MiniPh.params);
 	}
+});
+
+// If ctrl+c is hit, free resources and exit.
+process.on('SIGINT', function() {
+  lcd.clear();
+  lcd.close();
+  process.exit();
 });
