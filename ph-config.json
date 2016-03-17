@@ -7,5 +7,6 @@
     "vRef": 4.096,
     "opampGain": 5.25,
     "filter_n": 100,
-    "scale": 100
+    "scale": 100,
+    "Anything":"nothing at all"
 }

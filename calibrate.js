@@ -1,5 +1,15 @@
 var MiniPh = require('./index.js');
 // var miniPh = new MiniPh('/dev/i2c-0', 0x4d);
+// var Gpio = require('onoff').Gpio,
+// //Pump1 output setup
+//   	pump1 = new Gpio(14, 'out');
+//
+// //Turn Pump On
+// pump1.writeSync(0);
+//
+// //Turn Pump off
+// pump1.writeSync(1);
+
 var miniPh = new MiniPh();
 
 var Lcd = require('lcd'),
