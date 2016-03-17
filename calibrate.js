@@ -18,7 +18,7 @@ lcd.on('ready', function() {
     lcd.print("pH:"+miniPh.ph);
     lcd.once('printed', function() {
     	lcd.setCursor(0,1);
-    	lcd.print("raw:"+raw);
+    	lcd.print("raw:"+miniPh.raw);
     });
   }, 1000);
 });
